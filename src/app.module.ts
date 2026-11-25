@@ -1,13 +1,19 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
+import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
+import { TechniciansModule } from './technicians/technicians.module';
+import { IncidentsModule } from './incidents/incidents.module';
+
 
 @Module({
   imports: [
   ConfigModule.forRoot({ isGlobal: true }),
+
   TypeOrmModule.forRootAsync({
     inject: [ConfigService],
     useFactory: (config: ConfigService) => ({
@@ -18,12 +24,22 @@ import { UsersModule } from './users/users.module';
       password: config.get<string>('DB_PASSWORD'),
       database: config.get<string>('DB_NAME'),
       autoLoadEntities: true,
-      synchronize: true, // dev only — creates tables from entities
+      synchronize: true,
     }),
   }),
+
   UsersModule,
+  AuthModule,
+  TechniciansModule,
+  IncidentsModule,
 ],
-controllers: [AppController],
-providers: [AppService],
+  controllers: [AppController],
+  providers: [
+    AppService,
+    {
+      provide: APP_PIPE,
+      useValue: new ValidationPipe({ whitelist: true, transform: true }),
+    },
+  ],
 })
 export class AppModule {}
