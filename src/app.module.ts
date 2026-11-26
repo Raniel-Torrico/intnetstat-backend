@@ -10,6 +10,8 @@ import { TechniciansModule } from './technicians/technicians.module';
 import { IncidentsModule } from './incidents/incidents.module';
 import { LocationsModule } from './locations/locations.module';
 import { IncidentCategoriesModule } from './incident-categories/incident-categories.module';
+import { AssignmentsModule } from './incidents/assignments/assignments.module';
+import { ResolutionsModule } from './incidents/resolutions/resolutions.module';
 
 
 @Module({
@@ -36,6 +38,8 @@ import { IncidentCategoriesModule } from './incident-categories/incident-categor
   IncidentsModule,
   LocationsModule,
   IncidentCategoriesModule,
+  AssignmentsModule,
+  ResolutionsModule,
 ],
   controllers: [AppController],
   providers: [
