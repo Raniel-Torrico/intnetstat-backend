@@ -8,6 +8,8 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TechniciansModule } from './technicians/technicians.module';
 import { IncidentsModule } from './incidents/incidents.module';
+import { LocationsModule } from './locations/locations.module';
+import { IncidentCategoriesModule } from './incident-categories/incident-categories.module';
 
 
 @Module({
@@ -32,6 +34,8 @@ import { IncidentsModule } from './incidents/incidents.module';
   AuthModule,
   TechniciansModule,
   IncidentsModule,
+  LocationsModule,
+  IncidentCategoriesModule,
 ],
   controllers: [AppController],
   providers: [
